@@ -17,12 +17,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class CalculatorTests {
+class BanqueTests {
 
 	@Test
 	@DisplayName("1 + 1 = 2")
 	void addsTwoNumbers() {
-		Calculator calculator = new Calculator();
+		Banque calculator = new Banque();
 		assertEquals(2, calculator.add(1, 1), "1 + 1 should equal 2");
 	}
 
@@ -34,7 +34,7 @@ class CalculatorTests {
 			"1,  100, 101"
 	})
 	void add(int first, int second, int expectedResult) {
-		Calculator calculator = new Calculator();
+		Banque calculator = new Banque();
 		assertEquals(expectedResult, calculator.add(first, second),
 				() -> first + " + " + second + " should equal " + expectedResult);
 	}
