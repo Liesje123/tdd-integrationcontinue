@@ -34,17 +34,30 @@ public class CompteTest {
     /*
      * Est-ce que le solde d'un compte est négatif 
      */
-    @DisplayName("Test - compte - Est-ce que le solde d'un compte est négatif ")
     @Test
+    @DisplayName("Test - compte - Est-ce que le solde d'un compte est négatif ")
     void contenuSoldeNegatif(){
         assertFalse(compte.contenuSoldeEstNegatif());
     }
-
-    @DisplayName("Test - compte - Est-ce que le nouveau solde est inférieur à l'ancien ")
+    
+    /*
+     * Est-ce que le nouveau solde d'un compte est inférieur à l'ancien 
+     */
     @Test
+    @DisplayName("Test - compte - Est-ce que le nouveau solde est inférieur à l'ancien ")
     void inferieurSolde(){
         assertTrue(compte.contenuSoldeEstInferieur());
     }
 
+    /*
+     * Est-ce que le nouveau solde d'un compte après un retrait est négatif 
+     */
+    @Test
+    @DisplayName("Test - compte - Est que le nouveau sole est négatif ")
+    void contenuNouveauSoldeNegatif() {
+        int montantRetrait = 1600;
+
+        assertTrue(Integer.parseInt(compte.retirerSolde(montantRetrait)) < 0);
+    }
 
 }
