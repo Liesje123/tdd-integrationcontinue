@@ -108,9 +108,15 @@ class UtilisateurTest {
 	}
   
 	@Test
-	@DisplayName("Test - utilisateur - role - admin")
-	void roleEstAdmin(){
+	@DisplayName("Test - utilisateur - role - possède un rôle")
+	void roleExiste(){
 		assertTrue(utilisateur.estRole(utilisateur.role));
+	}
+
+	@Test
+	@DisplayName("Test - utilisateur - role - admin soit 'banquier'")
+	void roleEstAdmin(){
+		assertTrue(utilisateur.estRole("banquier"));
 	}
 
 	@Test
