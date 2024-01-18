@@ -142,23 +142,22 @@ class UtilisateurTest {
     	assertFalse(utilisateur.estConnecte());
 	}
 
-	// @Test
-	// @DisplayName("1 + 1 = 2")
-	// void addsTwoNumbers() {
-	// 	Banque calculator = new Banque();
-	// 	assertEquals(2, calculator.add(1, 1), "1 + 1 should equal 2");
-	// }
+	/*
+	* Test Est-ce que le virement est bien fonctionel 
+	*/
+	@Test
+	@DisplayName("Test - utilisateur - virement entre comptes")
+	void virementComptes() {
+		Compte compteDebiteur = new Compte("15", "1500");
+		Compte compteReceveur = new Compte("16", "2000");
+		int montant = 500;
+	
+		utilisateur.virement(montant, compteDebiteur, compteReceveur);
+	
+		assertTrue(Integer.parseInt(compteDebiteur.getSolde()) < 1500);
+	
+		assertTrue(Integer.parseInt(compteReceveur.getSolde()) > 2000);
 
-	// @ParameterizedTest(name = "{0} + {1} = {2}")
-	// @CsvSource({
-	// 		"0,    1,   1",
-	// 		"1,    2,   3",
-	// 		"49,  51, 100",
-	// 		"1,  100, 101"
-	// })
-	// void add(int first, int second, int expectedResult) {
-	// 	Banque calculator = new Banque();
-	// 	assertEquals(expectedResult, calculator.add(first, second),
-	// 			() -> first + " + " + second + " should equal " + expectedResult);
-	// }
+		assertTrue(Integer.parseInt(compteDebiteur.getSolde()) == (1500-montant));
+	}
 }

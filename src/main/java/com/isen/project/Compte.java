@@ -68,4 +68,8 @@ public class Compte {
     return false;
     }
 
+    public String getSolde(){
+        return solde;
+    }
+
 }

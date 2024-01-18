@@ -74,6 +74,16 @@ public class Utilisateur {
 		return false;
 	}
 
+	public void virement(int montant, Compte compteDebiteur, Compte compteReceveur){
+		if (Integer.parseInt(compteDebiteur.getSolde()) >= montant) {
+			compteDebiteur.retirerSolde(montant);
+			compteReceveur.ajouterArgent(montant);
+		}
+		else {
+			System.out.println("Solde insuffisant pour effectuer le virement.");
+		}
+	}
+
 	public boolean estConnecte() {
 		return connecte;
 	}
