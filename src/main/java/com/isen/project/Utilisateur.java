@@ -16,11 +16,15 @@ public class Utilisateur {
 	public String id;
 	public String mdp;
 	public String compte;
+	public String role;
+	public boolean connecte;
 
-    public Utilisateur(String id, String mdp, String compte) {
+    public Utilisateur(String id, String mdp, String compte, String role) {
 		this.id = id;
 		this.mdp = mdp;
 		this.compte = compte;
+		this.role = role;
+		this.connecte = false;
 	}
 
 	public boolean coupleIdentification_id(String test_id) {
@@ -46,6 +50,25 @@ public class Utilisateur {
 			return true;
 		}
 		return false;
+    }
+
+	public boolean estRole(String test_role) {
+		if(test_role == role){
+			return true;
+		}
+		return false;
+	}
+
+	public boolean estConnecte() {
+		return connecte;
+	}
+
+	public void seConnecter() {
+        connecte = true;
+    }
+
+    public void seDeconnecter() {
+        connecte = false;
     }
 
 }

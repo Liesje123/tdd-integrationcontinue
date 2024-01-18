@@ -26,7 +26,7 @@ class UtilisateurTest {
 	 * TEST IDENTIFICATION
 	 */
 	@Before
-	Utilisateur utilisateur = new Utilisateur("id","15","mdp");
+	Utilisateur utilisateur = new Utilisateur("id","15","mdp","banquier");
 
 	@Test
 	@DisplayName("Test - utilisateur - Id est valide")
@@ -76,6 +76,34 @@ class UtilisateurTest {
 		assertTrue(utilisateur.estSolde(utilisateur.compte));
 	}
 
+	@Test
+	@DisplayName("Test - utilisateur - role - admin")
+	void roleEstAdmin(){
+		assertTrue(utilisateur.estRole(utilisateur.role));
+	}
+
+	@Test
+	@DisplayName("Test - utilisateur - role - pas admin")
+	void roleEstPasAdmin(){
+		assertFalse(utilisateur.estRole("Client"));
+	}
+
+	@Test
+	@DisplayName("Test - utilisateur - se connecter")
+	void seConnecter() {
+    	utilisateur.seConnecter();
+    	assertTrue(utilisateur.estConnecte());
+	}
+
+	@Test
+	@DisplayName("Test - utilisateur - se déconnecter")
+	void seDeconnecter() {
+    	utilisateur.seConnecter();
+ 		assertTrue(utilisateur.estConnecte());
+
+    	utilisateur.seDeconnecter();
+    	assertFalse(utilisateur.estConnecte());
+	}
 
 	// @Test
 	// @DisplayName("1 + 1 = 2")
