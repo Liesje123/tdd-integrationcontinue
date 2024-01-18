@@ -86,4 +86,8 @@ public class Utilisateur {
         connecte = false;
     }
 
+	public String getRole() {
+		return role;
+	}
+
 }

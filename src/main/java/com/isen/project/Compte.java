@@ -12,6 +12,7 @@ public class Compte {
 		this.solde = solde;
 	}
 
+
     public boolean contenuSoldeEstNull() {
         if(solde==null){
             return true;
@@ -45,17 +46,26 @@ public class Compte {
     /*
      * Déposer de l'argent liquide
      */
-    public String ajouterLiquide(int ajoutLiquide) {
-        this.solde = "" + (Integer.parseInt(this.solde)+ajoutLiquide);
+    public String ajouterArgent(int ajoutArgent) {
+        this.solde = "" + (Integer.parseInt(this.solde)+ajoutArgent);
         return (this.solde);
     }
 
     public boolean contenuSoldeEstSuperieur() {
-        if (Integer.parseInt(this.solde)<=Integer.parseInt(ajouterLiquide(10))){
+        if (Integer.parseInt(this.solde)<=Integer.parseInt(ajouterArgent(10))){
             return true;
         }
     return false;
     }
 
+   /*
+     * Déposer de l'argent d'un chèque
+     */
+    public boolean contenuSoldePourChequeEstSuperieur(Utilisateur utilisateur_a_verifier) {
+        if ((utilisateur_a_verifier.getRole().equals("banquier"))&&(Integer.parseInt(this.solde)<=Integer.parseInt(ajouterArgent(10)))){
+            return true;
+        }
+    return false;
+    }
 
 }

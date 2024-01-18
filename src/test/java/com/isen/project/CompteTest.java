@@ -12,10 +12,14 @@ import org.junit.jupiter.api.Test;
 public class CompteTest {
 
     private Compte compte;
+    private Utilisateur banquier;
+    private Utilisateur client;
 
     @BeforeEach
     void init(){
         compte = new Compte("15","1500");
+        banquier = new Utilisateur("id","mdp",Arrays.asList("15","16","17"),"banquier");
+        client = new Utilisateur("id","mdp",Arrays.asList("15","16","17"),"client");
     }
 
     /*
@@ -53,12 +57,50 @@ public class CompteTest {
      * TEST DEPOSER DE L'ARGENT LIQUIDE
      */
     /*
-     * Est-ce que si je dépose une somme, le solde du compte change ?
+     * Est-ce que si je dépose de l'argent liquide, le solde du compte change ?
      */
     @Test
     @DisplayName("Test - compte - Est-ce que le nouveau solde est supérieur à l'ancien ")
     void superieurSold(){
         assertTrue(compte.contenuSoldeEstSuperieur());
     }
+
+    /*
+     * TEST DEPOSER DE L'ARGENT EN CHEQUE
+     */
+    /*
+     * Est-ce que je suis admin et peut déposer un chèque?
+     */
+    @Test
+	@DisplayName("Test - compte - Est-ce que role est admin soit 'banquier' -> oui")
+	void roleEstAdmin(){
+		assertTrue(banquier.estRole("banquier"));
+	}
+
+     /*
+     * Est-ce que je suis bien pas admin et peut déposer un chèque?
+     */
+    @Test
+	@DisplayName("Test - compte - Est-ce que role est admin soit 'banquier' ->non")
+	void roleEstPasAdmin(){
+		assertFalse(client.estRole("banquier"));
+	}
+    /*
+     * Est-ce que si je dépose en tant qu'admin un chèque, le solde du compte change ?
+     */
+    @Test
+    @DisplayName("Test - compte - admin - Est-ce que le nouveau solde est supérieur à l'ancien ")
+    void superieurSoldChequeAdmin(){
+        assertTrue(compte.contenuSoldePourChequeEstSuperieur(banquier));
+    }
+    /*
+     * Est-ce que si je dépose en tant qu'admin un chèque, le solde du compte change ?
+     */
+    @Test
+    @DisplayName("Test - compte - client - Est-ce que le nouveau solde est supérieur à l'ancien ")
+    void superieurSoldChequeClient(){
+        assertFalse(compte.contenuSoldePourChequeEstSuperieur(client));
+    }
+
 
 }
