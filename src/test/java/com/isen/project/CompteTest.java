@@ -19,7 +19,7 @@ public class CompteTest {
     }
 
     /*
-     * TEST SOLDE
+     * TEST LIRE LE SOLDE D'UN COMPTE
      */
     
     /*
@@ -34,17 +34,31 @@ public class CompteTest {
     /*
      * Est-ce que le solde d'un compte est négatif 
      */
-    @DisplayName("Test - compte - Est-ce que le solde d'un compte est négatif ")
     @Test
+    @DisplayName("Test - compte - Est-ce que le solde d'un compte est négatif ")
     void contenuSoldeNegatif(){
         assertFalse(compte.contenuSoldeEstNegatif());
     }
 
-    @DisplayName("Test - compte - Est-ce que le nouveau solde est inférieur à l'ancien ")
+    /*
+     * TEST RETIRER DE L'ARGENT
+     */
     @Test
+    @DisplayName("Test - compte - Est-ce que le nouveau solde est inférieur à l'ancien ")
     void inferieurSolde(){
         assertTrue(compte.contenuSoldeEstInferieur());
     }
 
+    /*
+     * TEST DEPOSER DE L'ARGENT LIQUIDE
+     */
+    /*
+     * Est-ce que si je dépose une somme, le solde du compte change ?
+     */
+    @Test
+    @DisplayName("Test - compte - Est-ce que le nouveau solde est supérieur à l'ancien ")
+    void superieurSold(){
+        assertTrue(compte.contenuSoldeEstSuperieur());
+    }
 
 }

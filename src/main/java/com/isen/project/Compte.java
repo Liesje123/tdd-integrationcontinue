@@ -26,6 +26,10 @@ public class Compte {
         return false;
     }
 
+    /*
+     * Retirer de l'argent
+     */
+
     public String retirerSolde(int argentRetirer) {
         this.solde = "" + (Integer.parseInt(this.solde)-argentRetirer);
         return (this.solde);
@@ -36,6 +40,21 @@ public class Compte {
             return true;
         }
         return false;
+    }
+
+    /*
+     * Déposer de l'argent liquide
+     */
+    public String ajouterLiquide(int ajoutLiquide) {
+        this.solde = "" + (Integer.parseInt(this.solde)+ajoutLiquide);
+        return (this.solde);
+    }
+
+    public boolean contenuSoldeEstSuperieur() {
+        if (Integer.parseInt(this.solde)<=Integer.parseInt(ajouterLiquide(10))){
+            return true;
+        }
+    return false;
     }
 
 
