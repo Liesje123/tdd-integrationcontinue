@@ -10,24 +10,33 @@
 
 package com.isen.project;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.BeforeAll;
+import java.util.Arrays;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 class UtilisateurTest {
 	/**
-	 * TEST IDENTIFICATION
+	 * TEST IDENTIFICATION D'UN CLIENT (ID /MDP)
 	 */
-	@Before
-	Utilisateur utilisateur = new Utilisateur("id","15","mdp","banquier");
+	private Utilisateur utilisateur;
+	private String mauvaisMdp = "pas bon mdp";
+	private String mauvaisId = "pas bon id";
+	private String bonCompte="15";
+	private String mauvaisCompte="25";
 
+    @BeforeEach
+    void init(){
+        utilisateur = new Utilisateur("id","mdp",Arrays.asList("15","16","17"),"banquier");
+    }
+
+	/*
+	 * Test de l'id du client 
+	 */
 	@Test
 	@DisplayName("Test - utilisateur - Id est valide")
 	void idEstValide(){
@@ -37,9 +46,12 @@ class UtilisateurTest {
 	@Test
 	@DisplayName("Test - utilisateur - Id est invalide")
 	void idEstInvalide(){
-		assertFalse(utilisateur.coupleIdentification_id("pas bon id"));
+		assertFalse(utilisateur.coupleIdentification_id(mauvaisId));
 	}
 
+	/*
+	 * Test du mdp du client
+	 */
 	@Test
 	@DisplayName("Test - utilisateur - mdp est valide")
 	void mdpEstValide(){
@@ -49,9 +61,12 @@ class UtilisateurTest {
 	@Test
 	@DisplayName("Test - utilisateur - mdp est invalide")
 	void mdpEstInvalide(){
-		assertFalse(utilisateur.coupleIdentification_mdp("pas bon id"));
+		assertFalse(utilisateur.coupleIdentification_mdp(mauvaisMdp));
 	}
 
+	/*
+	 * Test du couple (id+mdp) du client
+	 */
 	@Test
 	@DisplayName("Test - utilisateur - couple id+mdp est valide")
 	void coupleEstValide(){
@@ -61,21 +76,37 @@ class UtilisateurTest {
 	@Test
 	@DisplayName("Test - utilisateur - couple id+mdp est invalide")
 	void coupleEstInvalide(){
-		assertFalse(utilisateur.coupleIdentification("pas bon id","pas bon mdp"));
+		assertFalse(utilisateur.coupleIdentification(mauvaisId,mauvaisMdp));
+	}
+
+	/*
+	 * TEST LISTER LES COMPTES D'UN CLIENT
+	 */
+
+	 /*
+	  * Test Est-ce que le client possède des comptes / list compte est non nulle ? 
+	  */
+	@Test
+	@DisplayName("Test - compte d'utilisateur - est pas vide ?")
+	void compteUtilisateurEstPasVide(){
+		assertTrue(utilisateur.comptesEstPasVide());
+	}
+
+	/*
+	* Test Est-ce que le compte mock est dans la liste de compte client? 
+	*/
+	@Test
+	@DisplayName("Test - compte d'utilisateur - est dans la liste de compte du client ?")
+	void compteMockEstUnCompteClient(){
+		assertTrue(utilisateur.aCompte(bonCompte));
 	}
 
 	@Test
-	@DisplayName("Test - utilisateur - solde existe")
-	void afficheSold(){
-		assertTrue(utilisateur.compte.length()!= 0);
+	@DisplayName("Test - compte d'utilisateur - n'est pas dans la liste de compte du client ?")
+	void compteMockEstPasUnCompteClient(){
+		assertFalse(utilisateur.aCompte(mauvaisCompte));
 	}
-
-	@Test
-	@DisplayName("Test - utilisateur - solde ")
-	void afficheSoldNonNull(){
-		assertTrue(utilisateur.estSolde(utilisateur.compte));
-	}
-
+  
 	@Test
 	@DisplayName("Test - utilisateur - role - admin")
 	void roleEstAdmin(){
