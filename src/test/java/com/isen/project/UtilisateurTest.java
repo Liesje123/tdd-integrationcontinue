@@ -35,7 +35,7 @@ class UtilisateurTest {
     }
 
 	/*
-	 * Test de l'id du client 
+	 * Test de l'id du client - est-ce que l'id valide est détecté ? 
 	 */
 	@Test
 	@DisplayName("Test - utilisateur - Id est valide")
@@ -43,6 +43,9 @@ class UtilisateurTest {
 		assertTrue(utilisateur.coupleIdentification_id(utilisateur.id));
 	}
 
+	/*
+	 * Test de l'id du client - est-ce que l'id invalide est détecté ? 
+	 */
 	@Test
 	@DisplayName("Test - utilisateur - Id est invalide")
 	void idEstInvalide(){
@@ -50,7 +53,7 @@ class UtilisateurTest {
 	}
 
 	/*
-	 * Test du mdp du client
+	 * Test du mdp du client - est-ce que le mdp valide est détecté ?
 	 */
 	@Test
 	@DisplayName("Test - utilisateur - mdp est valide")
@@ -58,6 +61,9 @@ class UtilisateurTest {
 		assertTrue(utilisateur.coupleIdentification_mdp(utilisateur.mdp));
 	}
 
+	/*
+	 * Test du mdp du client - est-ce que le mdp invalide est détecté ?
+	 */
 	@Test
 	@DisplayName("Test - utilisateur - mdp est invalide")
 	void mdpEstInvalide(){
@@ -142,23 +148,4 @@ class UtilisateurTest {
     	assertFalse(utilisateur.estConnecte());
 	}
 
-	// @Test
-	// @DisplayName("1 + 1 = 2")
-	// void addsTwoNumbers() {
-	// 	Banque calculator = new Banque();
-	// 	assertEquals(2, calculator.add(1, 1), "1 + 1 should equal 2");
-	// }
-
-	// @ParameterizedTest(name = "{0} + {1} = {2}")
-	// @CsvSource({
-	// 		"0,    1,   1",
-	// 		"1,    2,   3",
-	// 		"49,  51, 100",
-	// 		"1,  100, 101"
-	// })
-	// void add(int first, int second, int expectedResult) {
-	// 	Banque calculator = new Banque();
-	// 	assertEquals(expectedResult, calculator.add(first, second),
-	// 			() -> first + " + " + second + " should equal " + expectedResult);
-	// }
 }
