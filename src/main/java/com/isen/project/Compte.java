@@ -26,5 +26,17 @@ public class Compte {
         return false;
     }
 
+    public String retirerSolde(int argentRetirer) {
+        this.solde = "" + (Integer.parseInt(this.solde)-argentRetirer);
+        return (this.solde);
+    }
+
+    public boolean contenuSoldeEstInferieur() {
+        if (Integer.parseInt(this.solde)>=Integer.parseInt(retirerSolde(10))){
+            return true;
+        }
+        return false;
+    }
+
 
 }

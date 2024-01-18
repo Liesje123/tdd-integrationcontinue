@@ -39,4 +39,12 @@ public class CompteTest {
     void contenuSoldeNegatif(){
         assertFalse(compte.contenuSoldeEstNegatif());
     }
+
+    @DisplayName("Test - compte - Est-ce que le nouveau solde est inférieur à l'ancien ")
+    @Test
+    void inferieurSolde(){
+        assertTrue(compte.contenuSoldeEstInferieur());
+    }
+
+
 }
